@@ -1,0 +1,9 @@
+@import "./base.scss";
+$green: hsla(160, 100%, 37%, 1);
+$greenLight: rgb(85, 241, 189);
+a,
+.green {
+  text-decoration: none;
+  color: $green;
+  transition: 0.4s;
+}
