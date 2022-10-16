@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { useStore } from '@/store';
+import { productsModule } from '@/store';
 import ProductCard from '../components/ProductCard.vue';
-
-const store = useStore();
+const { products } = productsModule;
 </script>
 
 <template>
@@ -17,7 +16,7 @@ const store = useStore();
     </Teleport>
   </div>
   <div class="products">
-    <ProductCard v-for="(product, index) in store.state.products" :key="index" :product="product" />
+    <ProductCard v-for="(product, index) in products" :key="index" :product="product" />
   </div>
 </template>
 

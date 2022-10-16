@@ -1,21 +1,25 @@
 import type { InjectionKey } from 'vue';
 import { createStore, Store, useStore as baseUseStore } from 'vuex';
-import { ProductsModule } from './modules/product';
+import { getModule } from 'vuex-module-decorators';
+import ProductsModule, { type Product } from './modules/product';
 
 export type RootState = {
-  products: ReturnType<typeof ProductsModule.state>;
+  products: Product[];
 };
 
 export const key: InjectionKey<Store<RootState>> = Symbol();
 
 const store = createStore({
   modules: {
-    products: ProductsModule,
+    productsModule: ProductsModule,
   },
 });
 
 export function useStore() {
   return baseUseStore(key);
 }
+
+const productsModule = getModule(ProductsModule, store);
+export { productsModule };
 
 export default store;

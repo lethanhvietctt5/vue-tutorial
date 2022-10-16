@@ -1,18 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { productsModule } from '@/store';
 import { useVuelidate } from '@vuelidate/core';
 import { required, minValue } from '@vuelidate/validators';
-import BaseInput from '../components/elements/BaseInput.vue';
-import { useStore } from '@/store';
 import { useRoute, useRouter } from 'vue-router';
 import { nanoid } from 'nanoid';
-import type { Product } from '@/store/modules/product';
+import BaseInput from '../components/elements/BaseInput.vue';
 
-const store = useStore();
 const router = useRouter();
 const route = useRoute();
 const { id } = route.params;
-const product: Product = store.getters['products/getProduct'](id);
+const product = productsModule.getProduct(id as string);
 
 const name = ref(product ? product.name : '');
 const price = ref(product ? product.price : 0);
@@ -49,11 +47,27 @@ async function onSubmit(e: Event) {
   if (!validateResult) return;
 
   if (product) {
-    store.commit('products/editProduct', {
+    productsModule.editProduct({
       id: product.id,
-      product: { ...product, name, price, category, mfg, discount },
+      product: {
+        ...product,
+        name: name.value,
+        price: price.value,
+        category: category.value,
+        mfg: mfg.value,
+        discount: discount.value,
+      },
     });
-  } else store.commit('products/addProduct', { name, price, category, mfg, discount, id: nanoid() });
+  } else {
+    productsModule.addProduct({
+      name: name.value,
+      price: price.value,
+      category: category.value,
+      mfg: mfg.value,
+      discount: discount.value,
+      id: nanoid(),
+    });
+  }
   router.back();
 }
 </script>

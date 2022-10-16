@@ -3,6 +3,7 @@
   "exclude": [],
   "compilerOptions": {
     "composite": true,
+    "experimentalDecorators": true,
     "lib": [],
     "types": ["node", "jsdom"]
   }
