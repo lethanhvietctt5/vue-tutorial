@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { ErrorObject } from "@vuelidate/core";
+import type { ErrorObject } from '@vuelidate/core';
 
 defineProps<{ label: string; modelValue: string | number; type: string; errors?: ErrorObject[] }>();
 const emit = defineEmits<{
-  (event: "update:modelValue", payload: string): void;
+  (event: 'update:modelValue', payload: string): void;
 }>();
 </script>
 
@@ -39,8 +39,8 @@ const emit = defineEmits<{
   justify-content: space-between;
   align-items: center;
   font-size: 16px;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
   margin: 10px 0;
 
   &__input-group {
@@ -54,8 +54,8 @@ const emit = defineEmits<{
       font-size: 16px;
       border: 1px solid grey;
       border-radius: 4px;
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans",
-        "Droid Sans", "Helvetica Neue", sans-serif;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
+        'Droid Sans', 'Helvetica Neue', sans-serif;
     }
 
     &--error {

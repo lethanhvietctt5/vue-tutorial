@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { Product } from "@/store/modules/product";
-import { computed } from "vue";
+import type { Product } from '@/store/modules/product';
+import { computed } from 'vue';
 
 const props = defineProps<{ product: Product }>();
 const formattedPrice = computed(() => {
-  return props.product.price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+  return props.product.price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 });
 </script>
 
@@ -22,7 +22,7 @@ const formattedPrice = computed(() => {
 </template>
 
 <style lang="scss">
-@use "@/assets/main.scss" as v;
+@use '@/assets/main.scss' as v;
 
 .card {
   border: 1px rgb(184, 182, 182) solid;

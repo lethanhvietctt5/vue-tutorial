@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import { ref, type Ref } from "vue";
-import { useVuelidate } from "@vuelidate/core";
-import { required, minValue } from "@vuelidate/validators";
-import BaseInput from "../components/elements/BaseInput.vue";
-import { useStore } from "@/store";
-import { useRoute, useRouter } from "vue-router";
-import { nanoid } from "nanoid";
-import type { Product } from "@/store/modules/product";
+import { ref } from 'vue';
+import { useVuelidate } from '@vuelidate/core';
+import { required, minValue } from '@vuelidate/validators';
+import BaseInput from '../components/elements/BaseInput.vue';
+import { useStore } from '@/store';
+import { useRoute, useRouter } from 'vue-router';
+import { nanoid } from 'nanoid';
+import type { Product } from '@/store/modules/product';
 
 const store = useStore();
 const router = useRouter();
 const route = useRoute();
 const { id } = route.params;
-const product: Product = store.getters["products/getProduct"](id);
+const product: Product = store.getters['products/getProduct'](id);
 
-const name = ref(product ? product.name : "");
+const name = ref(product ? product.name : '');
 const price = ref(product ? product.price : 0);
 const discount = ref(product ? product.discount : 0);
-const category = ref(product ? product.category : "");
-const mfg = ref(product ? product.mfg : "");
+const category = ref(product ? product.category : '');
+const mfg = ref(product ? product.mfg : '');
 
 const rules = {
   name: {
@@ -49,12 +49,12 @@ async function onSubmit(e: Event) {
   if (!validateResult) return;
 
   if (product) {
-    store.commit("products/editProduct", {
+    store.commit('products/editProduct', {
       id: product.id,
       product: { ...product, name, price, category, mfg, discount },
     });
-  } else store.commit("products/addProduct", { name, price, category, mfg, discount, id: nanoid() });
-  router.replace("/products");
+  } else store.commit('products/addProduct', { name, price, category, mfg, discount, id: nanoid() });
+  router.back();
 }
 </script>
 
@@ -76,7 +76,7 @@ async function onSubmit(e: Event) {
 </template>
 
 <style lang="scss">
-@use "@/assets/main.scss" as v;
+@use '@/assets/main.scss' as v;
 .background--grey {
   position: fixed;
   z-index: 998;

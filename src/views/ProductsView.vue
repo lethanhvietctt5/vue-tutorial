@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useStore } from "@/store";
-import ProductCard from "../components/ProductCard.vue";
+import { useStore } from '@/store';
+import ProductCard from '../components/ProductCard.vue';
 
 const store = useStore();
 </script>
@@ -22,7 +22,7 @@ const store = useStore();
 </template>
 
 <style scoped lang="scss">
-@use "@/assets/main.scss" as v;
+@use '@/assets/main.scss' as v;
 
 .group-buttons {
   margin-bottom: 20px;

@@ -1,6 +1,6 @@
-import type { InjectionKey } from "vue";
-import { createStore, Store, useStore as baseUseStore } from "vuex";
-import { ProductsModule } from "./modules/product";
+import type { InjectionKey } from 'vue';
+import { createStore, Store, useStore as baseUseStore } from 'vuex';
+import { ProductsModule } from './modules/product';
 
 export type RootState = {
   products: ReturnType<typeof ProductsModule.state>;
