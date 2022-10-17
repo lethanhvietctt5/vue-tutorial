@@ -7,7 +7,10 @@ const { products } = productsModule;
 <template>
   <div class="group-buttons">
     <button class="button--add">
-      <RouterLink to="/products/add">Add product</RouterLink>
+      <RouterLink to="/products/add">Add product (Vuelidate)</RouterLink>
+    </button>
+    <button class="button--add">
+      <RouterLink to="/products/add/veevalidate">Add product(Veevalidate)</RouterLink>
     </button>
   </div>
   <div>
@@ -35,6 +38,7 @@ const { products } = productsModule;
   font-size: 18px;
   border-radius: 5px;
   cursor: pointer;
+  margin-right: 10px;
 
   a {
     color: white;

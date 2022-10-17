@@ -17,6 +17,10 @@ const router = createRouter({
           component: () => import('../views/ProductFormView.vue'),
         },
         {
+          path: 'add/veevalidate',
+          component: () => import('../views/ProductFormViewVee.vue'),
+        },
+        {
           path: ':id',
           component: () => import('../views/ProductFormView.vue'),
         },
