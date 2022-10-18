@@ -39,11 +39,8 @@ const rules = {
 
 const v = useVuelidate(rules, { name, price, category, mfg, discount });
 
-async function onSubmit(e: Event) {
+async function onSubmit() {
   const validateResult = await v.value.$validate();
-  for (let i = 0; i < 5; i++) {
-    console.log(nanoid());
-  }
   if (!validateResult) return;
 
   if (product) {
@@ -75,16 +72,16 @@ async function onSubmit(e: Event) {
 <template>
   <div class="background--grey"></div>
   <form class="modal" @submit.prevent="onSubmit">
-    <BaseInput type="text" label="Name" v-model="name" :errors="v.name.$errors" />
-    <BaseInput type="number" label="Price" v-model="price" :errors="v.price.$errors" />
-    <BaseInput type="number" label="% Discount" v-model="discount" :errors="v.discount.$errors" />
-    <BaseInput type="select" label="Category" v-model="category" :errors="v.category.$errors">
+    <BaseInput type="text" label="Name" v-model="v.name.$model" :errors="v.name.$errors" />
+    <BaseInput type="number" label="Price" v-model="v.price.$model" :errors="v.price.$errors" />
+    <BaseInput type="number" label="% Discount" v-model="v.discount.$model" :errors="v.discount.$errors" />
+    <BaseInput type="select" label="Category" v-model="v.category.$model" :errors="v.category.$errors">
       <option value="">Select category</option>
       <option value="Điện tử">Điện tử</option>
       <option value="Sách">Sách</option>
       <option value="Thời trang">Thời trang</option>
     </BaseInput>
-    <BaseInput type="date" label="MFG" v-model="mfg" :errors="v.mfg.$errors" />
+    <BaseInput type="date" label="MFG" v-model="v.mfg.$model" :errors="v.mfg.$errors" />
     <button type="submit" class="btn-submit">Submit</button>
   </form>
 </template>

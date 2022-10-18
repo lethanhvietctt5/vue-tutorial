@@ -26,6 +26,10 @@ const router = createRouter({
         },
       ],
     },
+    {
+      path: '/async-validate',
+      component: () => import('../views/AsyncValidationView.vue'),
+    },
   ],
 });
 

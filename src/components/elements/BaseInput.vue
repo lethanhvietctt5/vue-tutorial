@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { ErrorObject } from '@vuelidate/core';
+import type { Ref } from 'vue';
 
-defineProps<{ label: string; modelValue: string | number; type: string; errors?: ErrorObject[] }>();
+defineProps<{ label: string; modelValue: string | number | Ref<any>; type: string; errors?: ErrorObject[] }>();
 const emit = defineEmits<{
   (event: 'update:modelValue', payload: string): void;
 }>();
