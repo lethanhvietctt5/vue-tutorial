@@ -2,7 +2,9 @@
 import type { Product } from '@/store/modules/product';
 import { computed } from 'vue';
 
-const props = defineProps<{ product: Product }>();
+export type ProductCardProps = { product: Product };
+
+const props = defineProps<ProductCardProps>();
 const formattedPrice = computed(() => {
   return props.product.price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 });
@@ -10,14 +12,16 @@ const formattedPrice = computed(() => {
 
 <template>
   <RouterLink :to="`/products/${product.id}`" class="card">
-    <img src="@/assets/logo.svg" alt="Product image" width="200" />
-    <div class="card__title" :title="product.name">{{ product.name }}</div>
-    <div class="card__category">{{ product.category }}</div>
+    <img src="../assets/logo.svg" alt="Product image" width="200" />
+    <div class="card__title" :title="product.name" data-test="title">{{ product.name }}</div>
+    <div class="card__category" data-test="category">{{ product.category }}</div>
     <div class="card__price">
-      {{ formattedPrice }}
-      <span class="card__price--discount" v-if="product.discount > 0">(-{{ product.discount }}%)</span>
+      <div data-test="price">{{ formattedPrice }}</div>
+      <span class="card__price--discount" v-if="product.discount > 0" data-test="discount"
+        >(-{{ product.discount }}%)</span
+      >
     </div>
-    <div>DFG: {{ product.mfg }}</div>
+    <div data-test="mfg">MFG: {{ product.mfg }}</div>
   </RouterLink>
 </template>
 

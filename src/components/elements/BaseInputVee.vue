@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import { useField } from 'vee-validate';
 
-const props = defineProps<{ label: string; type: string; name: string }>();
+export type BaseInputVeeProps = {
+  label: string;
+  type: string;
+  name: string;
+};
+
+const props = defineProps<BaseInputVeeProps>();
 const { value, errorMessage } = useField(props.name);
 </script>
 
 <template>
   <div class="wrapper">
-    <label class="wrapper__label">{{ label }}</label>
+    <label class="wrapper__label" data-test="label">{{ label }}</label>
 
     <div class="wrapper__input-group">
       <select v-if="type == 'select'" class="wrapper__input-group__input" v-model="value">

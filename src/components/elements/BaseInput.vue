@@ -2,15 +2,23 @@
 import type { ErrorObject } from '@vuelidate/core';
 import type { Ref } from 'vue';
 
-defineProps<{ label: string; modelValue: string | number | Ref<any>; type: string; errors?: ErrorObject[] }>();
-const emit = defineEmits<{
+export type BaseInputProps = {
+  label: string;
+  modelValue: string | number | Ref<any>;
+  type: string;
+  errors?: ErrorObject[];
+};
+export type EventEmitter = {
   (event: 'update:modelValue', payload: string): void;
-}>();
+};
+
+defineProps<BaseInputProps>();
+const emit = defineEmits<EventEmitter>();
 </script>
 
 <template>
   <div class="wrapper">
-    <label class="wrapper__label">{{ label }}</label>
+    <label class="wrapper__label" data-test="label">{{ label }}</label>
 
     <div class="wrapper__input-group">
       <select
@@ -18,6 +26,7 @@ const emit = defineEmits<{
         class="wrapper__input-group__input"
         :value="modelValue"
         @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+        data-test="input-value"
       >
         <slot></slot>
       </select>
@@ -28,6 +37,7 @@ const emit = defineEmits<{
         :value="modelValue"
         class="wrapper__input-group__input"
         @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+        data-test="input-value"
       />
       <div v-if="errors && errors.length > 0" class="wrapper__input-group--error">{{ errors[0].$message }}</div>
     </div>
