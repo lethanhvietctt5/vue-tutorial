@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
-import BaseInput, { type BaseInputProps } from '../BaseInput.vue';
+import BaseInput, { type BaseInputProps } from './BaseInput.vue';
 import { ref } from 'vue';
 
 describe('BaseInput', () => {

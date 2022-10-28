@@ -19,7 +19,7 @@ const schema = yup.object({
   mfg: yup.string().trim().required(),
 });
 
-const { handleSubmit, values } = useForm({
+const { values, handleSubmit } = useForm({
   validationSchema: schema,
   initialValues: {
     name: product ? product.name : '',
@@ -31,29 +31,31 @@ const { handleSubmit, values } = useForm({
 });
 
 const onSubmit = handleSubmit(async () => {
-  if (product) {
-    productsModule.editProduct({
-      id: product.id,
-      product: {
-        ...product,
+  {
+    if (product) {
+      productsModule.editProduct({
+        id: product.id,
+        product: {
+          ...product,
+          name: values.name,
+          price: values.price,
+          category: values.category,
+          mfg: values.mfg,
+          discount: values.discount,
+        },
+      });
+    } else {
+      productsModule.addProduct({
         name: values.name,
         price: values.price,
         category: values.category,
         mfg: values.mfg,
         discount: values.discount,
-      },
-    });
-  } else {
-    productsModule.addProduct({
-      name: values.name,
-      price: values.price,
-      category: values.category,
-      mfg: values.mfg,
-      discount: values.discount,
-      id: nanoid(),
-    });
+        id: nanoid(),
+      });
+    }
+    router.back();
   }
-  router.back();
 });
 </script>
 

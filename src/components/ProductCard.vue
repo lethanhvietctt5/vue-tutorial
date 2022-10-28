@@ -12,16 +12,18 @@ const formattedPrice = computed(() => {
 
 <template>
   <RouterLink :to="`/products/${product.id}`" class="card">
-    <img src="../assets/logo.svg" alt="Product image" width="200" />
-    <div class="card__title" :title="product.name" data-test="title">{{ product.name }}</div>
-    <div class="card__category" data-test="category">{{ product.category }}</div>
-    <div class="card__price">
-      <div data-test="price">{{ formattedPrice }}</div>
-      <span class="card__price--discount" v-if="product.discount > 0" data-test="discount"
-        >(-{{ product.discount }}%)</span
-      >
+    <div data-test="product-item">
+      <img src="../assets/logo.svg" alt="Product image" width="200" />
+      <div class="card__title" :title="product.name" data-test="title">{{ product.name }}</div>
+      <div class="card__category" data-test="category">{{ product.category }}</div>
+      <div class="card__price">
+        <div data-test="price">{{ formattedPrice }}</div>
+        <span class="card__price--discount" v-if="product.discount > 0" data-test="discount"
+          >(-{{ product.discount }}%)</span
+        >
+      </div>
+      <div data-test="mfg">MFG: {{ product.mfg }}</div>
     </div>
-    <div data-test="mfg">MFG: {{ product.mfg }}</div>
   </RouterLink>
 </template>
 

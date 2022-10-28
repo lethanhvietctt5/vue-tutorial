@@ -13,7 +13,6 @@ const rules = {
     email,
     isUnique: helpers.withAsync(async (value: any) => {
       const res = await api.get(`/users?email=${value}`);
-      console.log(res.data && (res.data as Array<any>).length > 0);
       if (res.data && (res.data as Array<any>).length > 0) return false;
       return true;
     }),
@@ -30,17 +29,19 @@ const v = useVuelidate(rules, { email: emailValue });
       <input type="text" v-model="v.email.$model" />
       <div v-if="v.email.$dirty">
         <div v-if="v.email.$pending">pending</div>
-        <div v-else-if="v.email.$dirty && v.email.isUnique.$invalid" class="message--error">
+        <div v-else-if="v.email.$dirty && v.email.isUnique.$invalid" class="message--error" data-test="message-error">
           Email has already existed
         </div>
-        <div v-else-if="v.email.$errors.length > 0" class="message--error">{{ v.email.$errors[0].$message }}</div>
-        <div v-else class="message--success">Email is valid</div>
+        <div v-else-if="v.email.$errors.length > 0" class="message--error" data-test="message-error">
+          {{ v.email.$errors[0].$message }}
+        </div>
+        <div v-else class="message--success" data-test="message--success">Email is valid</div>
       </div>
     </div>
   </div>
 
   <div class="list-user">
-    <div v-if="usersModule.loading" class="loading">
+    <div v-if="usersModule.loading" class="loading" data-test="loading-icon">
       <IcLoading />
     </div>
     <div v-else class="list-wrapper">

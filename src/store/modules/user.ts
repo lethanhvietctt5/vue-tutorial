@@ -19,7 +19,7 @@ export default class UsersModule extends VuexModule {
   async getUsers() {
     try {
       this.context.commit('setLoading', true);
-      const users = await api.get('https://jsonplaceholder.typicode.com/users');
+      const users = await api.get('/users');
       this.context.commit('setUsers', users.data);
     } catch (err) {
       console.log(err);

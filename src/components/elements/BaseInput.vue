@@ -39,7 +39,9 @@ const emit = defineEmits<EventEmitter>();
         @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
         data-test="input-value"
       />
-      <div v-if="errors && errors.length > 0" class="wrapper__input-group--error">{{ errors[0].$message }}</div>
+      <div v-if="errors && errors.length > 0" class="wrapper__input-group--error" data-test="error-message">
+        {{ errors[0].$message }}
+      </div>
     </div>
   </div>
 </template>

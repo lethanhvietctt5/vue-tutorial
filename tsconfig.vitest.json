@@ -5,6 +5,9 @@
     "composite": true,
     "experimentalDecorators": true,
     "lib": [],
-    "types": ["node", "jsdom"]
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "types": ["node", "jsdom", "vitest/globals"]
   }
 }

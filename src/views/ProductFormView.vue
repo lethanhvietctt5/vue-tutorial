@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { productsModule } from '@/store';
 import { useVuelidate } from '@vuelidate/core';
-import { required, minValue } from '@vuelidate/validators';
+import { required, minValue, helpers } from '@vuelidate/validators';
 import { useRoute, useRouter } from 'vue-router';
 import { nanoid } from 'nanoid';
 import BaseInput from '../components/elements/BaseInput.vue';
@@ -13,27 +13,27 @@ const { id } = route.params;
 const product = productsModule.getProduct(id as string);
 
 const name = ref(product ? product.name : '');
-const price = ref(product ? product.price : 0);
-const discount = ref(product ? product.discount : 0);
+const price = ref(product ? product.price : '');
+const discount = ref(product ? product.discount : '');
 const category = ref(product ? product.category : '');
 const mfg = ref(product ? product.mfg : '');
 
 const rules = {
   name: {
-    required,
+    required: helpers.withMessage('Name is required', required),
   },
   price: {
-    required,
-    minValue: minValue(1),
+    required: helpers.withMessage('Price is required', required),
+    minValue: helpers.withMessage('Min value of price is 1$', minValue(1)),
   },
   discount: {
-    minValue: minValue(0),
+    minValue: helpers.withMessage('%Discount must be greater than 0.', minValue(0)),
   },
   category: {
-    required,
+    required: helpers.withMessage('Category is required', required),
   },
   mfg: {
-    required,
+    required: helpers.withMessage('MFG is required', required),
   },
 };
 
@@ -49,19 +49,19 @@ async function onSubmit() {
       product: {
         ...product,
         name: name.value,
-        price: price.value,
+        price: price.value as number,
         category: category.value,
         mfg: mfg.value,
-        discount: discount.value,
+        discount: Number(discount.value) || 0,
       },
     });
   } else {
     productsModule.addProduct({
       name: name.value,
-      price: price.value,
+      price: price.value as number,
       category: category.value,
       mfg: mfg.value,
-      discount: discount.value,
+      discount: Number(discount.value) || 0,
       id: nanoid(),
     });
   }

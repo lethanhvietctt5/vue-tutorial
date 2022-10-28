@@ -9,7 +9,7 @@ export type Product = {
   mfg: string;
 };
 
-const initProducts = [
+export const initProducts = [
   {
     name: 'Màn Hình MSI Optix MAG251RX 240Hz (24.5 inch, 1920 x 1080, 240Hz, IPS, 1ms) -Hàng Chính Hãng',
     price: 8990000,

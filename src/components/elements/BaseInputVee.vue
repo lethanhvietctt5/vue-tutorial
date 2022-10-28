@@ -21,7 +21,7 @@ const { value, errorMessage } = useField(props.name);
       </select>
 
       <input v-else :type="type" class="wrapper__input-group__input" v-model="value" />
-      <div v-if="errorMessage" class="wrapper__input-group--error">{{ errorMessage }}</div>
+      <div v-if="errorMessage" class="wrapper__input-group--error" data-test="error-message">{{ errorMessage }}</div>
     </div>
   </div>
 </template>

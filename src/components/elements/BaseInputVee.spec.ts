@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
-import BaseInputVee, { type BaseInputVeeProps } from '../BaseInputVee.vue';
+import BaseInputVee, { type BaseInputVeeProps } from './BaseInputVee.vue';
 
 describe('BaseInput', () => {
   test('Render proper label', async () => {
