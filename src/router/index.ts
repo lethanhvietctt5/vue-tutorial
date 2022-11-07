@@ -30,6 +30,10 @@ const router = createRouter({
       path: '/async-validate',
       component: () => import('../views/AsyncValidationView.vue'),
     },
+    {
+      path: '/pinia-store',
+      component: () => import('../views/PiniaUsers.vue'),
+    },
   ],
 });
 
